@@ -1,15 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-const Title = () => <h1>Hello World</h1>
+const Title = ({ children }) => <h1>{children}</h1>
 
-const Desc = () => <p>So What's up dude!?</p>
+const Author = ({ children }) => <p>{children}</p>
 
 const Greeting = () => {
 	return (
 		<>
-			<Title />
-			<Desc />
+			<section>
+				<img src='/logo512.png' alt='logo' />
+				<Title>Rich Dad Poor Dad.</Title>
+				<Author>Rayhan Soe</Author>
+			</section>
 		</>
 	)
 }
