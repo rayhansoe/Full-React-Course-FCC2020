@@ -1,12 +1,9 @@
-import { BasicCounter } from "./tutorial/1-useState/setup/1-useState"
+import { UseEffectBasic } from "./tutorial/2-useEffect/useEffectTopics"
 
 const App = () => {
 	return (
 		<div className='container'>
-			<>
-				{/* <h2>Basic useState</h2> */}
-				<BasicCounter />
-			</>
+			<UseEffectBasic />
 		</div>
 	)
 }
