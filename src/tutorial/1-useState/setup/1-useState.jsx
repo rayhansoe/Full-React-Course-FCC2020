@@ -57,25 +57,40 @@ export const UseStateArray = () => {
 export const BasicCounter = () => {
 	const [count, setCount] = useState(() => 0)
 
-	const increment = () => setCount(count => count + 1)
+	const increment = () => setCount(prevCount => count + 1)
 
-	const decrement = () => setCount(count => count - 1)
+	const increaseLater = () =>
+		setTimeout(() => {
+			setCount(prevCount => count + 5)
+		}, 2000)
 
-	const resetCount = () => setCount(count => count - count)
+	const decrement = () => setCount(prevCount => count - 1)
+
+	const resetCount = () => setCount(prevCount => count - count)
 
 	return (
-		<section style={{ margin: "4rem 0" }}>
-			<h2>Regular Counter</h2>
-			<h1>{count}</h1>
-			<button className='btn' onClick={decrement}>
-				Decrease
-			</button>
-			<button className='btn' onClick={resetCount}>
-				Reset
-			</button>
-			<button className='btn' onClick={increment}>
-				Increase
-			</button>
-		</section>
+		<>
+			<section style={{ margin: "4rem 0" }}>
+				<h2>Regular Counter</h2>
+				<h1>{count}</h1>
+				<button className='btn' onClick={decrement}>
+					Decrease
+				</button>
+				<button className='btn' onClick={resetCount}>
+					Reset
+				</button>
+				<button className='btn' onClick={increment}>
+					Increase
+				</button>
+			</section>
+
+			<section style={{ margin: "4rem 0" }}>
+				<h2>More Complex Counter</h2>
+				<h1>{count}</h1>
+				<button className='btn' onClick={increaseLater}>
+					Increase 5 Times Later
+				</button>
+			</section>
+		</>
 	)
 }
