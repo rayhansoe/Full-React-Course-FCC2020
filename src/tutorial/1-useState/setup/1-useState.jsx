@@ -18,12 +18,10 @@ export const UseStateArray = () => {
 
 	const removeItems = () => setPeople(() => [])
 
-	const resetItems = () => setPeople(() => data)
+	const resetItems = () => setPeople(prevPeople => prevPeople.splice(0, prevPeople.length, ...data))
 
 	const removeItem = id => {
-		const newArray = people.filter(person => person.id !== id)
-
-		setPeople(() => newArray)
+		setPeople(prevPeople => prevPeople.filter(person => person.id !== id))
 	}
 
 	const peopleList = people.map(person => {
@@ -37,19 +35,31 @@ export const UseStateArray = () => {
 		)
 	})
 
+	const RenderButtons = () =>
+		!people.length ? (
+			<button className='btn' onClick={resetItems}>
+				Reset Items
+			</button>
+		) : people.length < 4 ? (
+			<>
+				<button className='btn' onClick={removeItems}>
+					Remove Items
+				</button>
+				<button className='btn' onClick={resetItems}>
+					Reset Items
+				</button>
+			</>
+		) : (
+			<button className='btn' onClick={removeItems}>
+				Remove Items
+			</button>
+		)
+
 	return (
 		<>
 			{/* <h1>UseState Array Example</h1> */}
 			{peopleList}
-			{people.length ? (
-				<button className='btn' onClick={removeItems}>
-					Remove Items
-				</button>
-			) : (
-				<button className='btn' onClick={resetItems}>
-					Reset Items
-				</button>
-			)}
+			<RenderButtons />
 		</>
 	)
 }
