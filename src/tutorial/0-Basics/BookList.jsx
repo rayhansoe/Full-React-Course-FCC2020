@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react"
 
-import { myBooks } from "./myBooks"
+import { myBooks } from "../../myBooks"
 
-import Book from "./components/Book"
+import Book from "./component/Book"
 
 const BookList = () => {
 	const [books, setBooks] = useState(() => myBooks)

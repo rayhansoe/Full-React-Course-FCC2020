@@ -1,6 +1,13 @@
-import BookList from "./BookList"
+import React from "react"
 import ReactDOM from "react-dom"
+
+import App from "./App"
 
 import "./index.css"
 
-ReactDOM.render(<BookList />, document.getElementById("root"))
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+)
