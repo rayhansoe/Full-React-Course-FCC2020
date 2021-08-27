@@ -18,6 +18,8 @@ export const UseStateArray = () => {
 
 	const removeItems = () => setPeople(() => [])
 
+	const resetItems = () => setPeople(() => data)
+
 	const removeItem = id => {
 		const newArray = people.filter(person => person.id !== id)
 
@@ -39,9 +41,15 @@ export const UseStateArray = () => {
 		<>
 			{/* <h1>UseState Array Example</h1> */}
 			{peopleList}
-			<button className='btn' onClick={removeItems}>
-				Clear Items
-			</button>
+			{people.length ? (
+				<button className='btn' onClick={removeItems}>
+					Remove Items
+				</button>
+			) : (
+				<button className='btn' onClick={resetItems}>
+					Reset Items
+				</button>
+			)}
 		</>
 	)
 }
