@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { data } from "../../../data"
+import { data } from "../../data"
 
 export const UseStateBasics = () => {
 	const state = useState(1)
