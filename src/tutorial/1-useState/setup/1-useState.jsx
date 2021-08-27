@@ -53,3 +53,24 @@ export const UseStateArray = () => {
 		</>
 	)
 }
+
+export const BasicCounter = () => {
+	const [count, setCount] = useState(() => 1)
+
+	const increment = () => setCount(count => count + 1)
+
+	const decrement = () => setCount(count => count - 1)
+
+	return (
+		<>
+			<h2>Counter</h2>
+			<button className='btn' onClick={decrement}>
+				-
+			</button>
+			<h3 style={{ display: "inline-block" }}>{count}</h3>
+			<button className='btn' onClick={increment}>
+				+
+			</button>
+		</>
+	)
+}
