@@ -55,22 +55,27 @@ export const UseStateArray = () => {
 }
 
 export const BasicCounter = () => {
-	const [count, setCount] = useState(() => 1)
+	const [count, setCount] = useState(() => 0)
 
 	const increment = () => setCount(count => count + 1)
 
 	const decrement = () => setCount(count => count - 1)
 
+	const resetCount = () => setCount(count => count - count)
+
 	return (
-		<>
-			<h2>Counter</h2>
+		<section style={{ margin: "4rem 0" }}>
+			<h2>Regular Counter</h2>
+			<h1>{count}</h1>
 			<button className='btn' onClick={decrement}>
-				-
+				Decrease
 			</button>
-			<h3 style={{ display: "inline-block" }}>{count}</h3>
+			<button className='btn' onClick={resetCount}>
+				Reset
+			</button>
 			<button className='btn' onClick={increment}>
-				+
+				Increase
 			</button>
-		</>
+		</section>
 	)
 }
