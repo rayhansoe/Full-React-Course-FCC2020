@@ -58,3 +58,25 @@ so that your number becomes absolute.`
 		</>
 	)
 }
+
+export const UseEffectCleanup = () => {
+	const [size, setSize] = useState(window.innerWidth)
+
+	const checkSize = () => setSize(window.innerWidth)
+
+	useEffect(() => {
+		window.addEventListener(
+			"resize",
+			checkSize
+			// () => setSize(prevSize => prevSize - prevSize + window.innerWidth)
+		)
+		return () => window.removeEventListener("resize", checkSize)
+	}, [])
+
+	return (
+		<>
+			<h1>Window</h1>
+			<h2>{size}px</h2>
+		</>
+	)
+}
