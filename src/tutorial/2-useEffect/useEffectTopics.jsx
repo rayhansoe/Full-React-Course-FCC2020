@@ -3,35 +3,31 @@ import React, { useState, useEffect, useRef } from "react"
 export const UseEffectBasic = () => {
 	const [count, setCount] = useState(() => 0)
 
-	const renderTimes = useRef(0)
+	const renderTimes = useRef(1)
 
-	const increaseRenderTime = () => (renderTimes.current += 1)
+	const increment = () => setCount(prevCount => prevCount + 1)
 
-	const increment = () => setCount(prevCount => count + 1)
+	const decrement = () => setCount(prevCount => prevCount - 1)
 
-	const decrement = () => setCount(prevCount => count - 1)
-
-	const resetCount = () => setCount(prevCount => count - count)
+	const resetCount = () => setCount(prevCount => prevCount - prevCount)
 
 	// effect for increased rendered times
 	useEffect(() => {
-		increaseRenderTime()
-	}, [count])
+		renderTimes.current += 1
+	}, [])
 
 	// effect for negative value
 	useEffect(() => {
-		const reminderNegativeValue = () =>
-			setTimeout(() => {
-				count < 0 &&
-					alert(
-						`Your Number is  ( ${count} )
+		setTimeout(() => {
+			count < 0 &&
+				alert(
+					`Your Number is  ( ${count} )
 and that is a Negative Number.
 reset your number or increase ${Math.abs(count)} times
 so that your number becomes absolute.`
-					)
-			}, 500)
-		reminderNegativeValue()
-	}, [count, renderTimes])
+				)
+		}, 500)
+	}, [count])
 
 	return (
 		<>
@@ -50,6 +46,9 @@ so that your number becomes absolute.`
 					Increase
 				</button>
 			</section>
+			<button className='btn' onClick={() => alert("hello world")}>
+				Dummy Button
+			</button>
 		</>
 	)
 }
