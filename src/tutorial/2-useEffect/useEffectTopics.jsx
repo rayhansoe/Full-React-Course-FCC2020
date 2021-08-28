@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 
 export const UseEffectBasic = () => {
-	const [count, setCount] = useState(() => 0)
+	const [count, setCount] = useState(() => false)
 
 	const renderTimes = useRef(1)
 
@@ -13,8 +13,14 @@ export const UseEffectBasic = () => {
 
 	// effect for increased rendered times
 	useEffect(() => {
+		if (typeof count === "number") {
+			document.title = `${count ? `(${count}) ` : ""}React App`
+			console.log("re-rendered")
+		} else {
+			console.log("rendered")
+		}
 		renderTimes.current += 1
-	}, [])
+	}, [count])
 
 	// effect for negative value
 	useEffect(() => {
@@ -34,7 +40,7 @@ so that your number becomes absolute.`
 			<section style={{ margin: "4rem 0" }}>
 				<h2>UseEffect Basics</h2>
 				<h3>this page is rendered {renderTimes.current} times.</h3>
-				<h1>{count}</h1>
+				<h1>{!count ? 0 : count}</h1>
 
 				<button className='btn' onClick={decrement}>
 					Decrease
