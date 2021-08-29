@@ -95,7 +95,7 @@ export const UseEffectFecthData = () => {
 
 		check && setUsers(check)
 
-		setIsError(curr => (check ? curr : !curr))
+		!check && setIsError(curr => !curr)
 
 		setTimeout(() => {
 			setIsLoding(curr => !curr)
@@ -112,9 +112,13 @@ export const UseEffectFecthData = () => {
 
 			return (
 				<li key={id}>
-					<img src={avatar_url} alt={login} />
+					<a href={html_url} target='_blank' rel='noreferrer'>
+						<img src={avatar_url} alt={login} />
+					</a>
 					<div>
-						<a href={html_url}>{login}</a>
+						<a href={html_url} target='_blank' rel='noreferrer'>
+							{login}
+						</a>
 					</div>
 				</li>
 			)
