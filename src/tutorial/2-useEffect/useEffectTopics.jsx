@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
+import { checkStatus } from "../../tools"
+
+const url = "https://api.github.com/users"
 
 export const UseEffectBasic = () => {
 	const [count, setCount] = useState(() => false)
@@ -77,6 +80,61 @@ export const UseEffectCleanup = () => {
 		<>
 			<h1>Window</h1>
 			<h2>{size}px</h2>
+		</>
+	)
+}
+
+// useEffect | Fetch Data + multiple returns
+export const UseEffectFecthData = () => {
+	const [isLoding, setIsLoding] = useState(true)
+	const [isError, setIsError] = useState(false)
+	const [users, setUsers] = useState([])
+
+	const getUsers = async () => {
+		const check = await checkStatus(url).catch(err => console.log(err))
+
+		check && setUsers(check)
+
+		setIsError(curr => (check ? curr : !curr))
+
+		setTimeout(() => {
+			setIsLoding(curr => !curr)
+		}, 500)
+	}
+
+	useEffect(() => {
+		getUsers()
+	}, [])
+
+	const getUsersList = () =>
+		users.map(user => {
+			const { id, avatar_url, html_url, login } = user
+
+			return (
+				<li key={id}>
+					<img src={avatar_url} alt={login} />
+					<div>
+						<a href={html_url}>{login}</a>
+					</div>
+				</li>
+			)
+		})
+
+	if (isLoding) {
+		return <h1>Loading....</h1>
+	}
+	if (isError) {
+		return (
+			<>
+				<h2>Something went wrong...</h2>
+				<h3>check your console....</h3>
+			</>
+		)
+	}
+	return (
+		<>
+			<h3>GitHub Users</h3>
+			<ul className='users'>{getUsersList()}</ul>
 		</>
 	)
 }
