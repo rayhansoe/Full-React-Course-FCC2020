@@ -1,34 +1,11 @@
 import React, { useEffect, useReducer } from "react"
+
 import { checkStatus } from "../../tools"
+import MyItem from "./component/MyItem"
+
+import { reducer } from "./reducer"
 
 const url = "https://api.github.com/users"
-
-// reducer function.
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "FIRST_RENDER":
-			// const newUsers = [...state.users, ...action.payload.users]
-			return {
-				...state,
-				users: [...state.users, ...action.payload.users],
-			}
-
-		case "ERROR_FETCHING":
-			return {
-				...state,
-				isError: action.payload.isError,
-			}
-
-		case "LOADING_FINISHED":
-			return {
-				...state,
-				isLoading: action.payload.isLoading,
-			}
-
-		default:
-			throw new Error("no matching action type")
-	}
-}
 
 // default state
 const defaultState = {
@@ -44,20 +21,7 @@ const UseReducerTopic = () => {
 	// user list
 	const getUsersList = () =>
 		state.users.map(user => {
-			const { id, avatar_url, html_url, login } = user
-
-			return (
-				<li key={id}>
-					<a href={html_url} target='_blank' rel='noreferrer'>
-						<img src={avatar_url} alt={login} />
-					</a>
-					<div>
-						<a href={html_url} target='_blank' rel='noreferrer'>
-							{login}
-						</a>
-					</div>
-				</li>
-			)
+			return <MyItem key={user.id} user={user} />
 		})
 
 	// the side effect for data fetching
