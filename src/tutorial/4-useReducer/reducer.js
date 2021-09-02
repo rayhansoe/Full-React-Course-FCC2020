@@ -14,10 +14,22 @@ export const reducer = (state, action) => {
 				isError: action.payload.isError,
 			}
 
+		case "LOADING_FECTH_FINISHED":
+			return {
+				...state,
+				isFetchLoading: action.payload.isFetchLoading,
+			}
+
 		case "LOADING_FINISHED":
 			return {
 				...state,
 				isLoading: action.payload.isLoading,
+			}
+
+		case "ADD_URL":
+			return {
+				...state,
+				url: action.payload.url,
 			}
 
 		default:
