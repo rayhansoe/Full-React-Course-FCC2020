@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import MyInput from "./component/MyInput"
 
 import { v4 as uuidv4 } from "uuid"
+import MyItem from "./component/MyItem"
 
 export const Main = () => {
 	const [person, setPerson] = useState(() => ({
@@ -14,15 +15,7 @@ export const Main = () => {
 	const [isShowed, setIsShowed] = useState(false)
 
 	const peopleList = people.map(person => {
-		const { id, firstname, email, age } = person
-
-		return (
-			<div className='item' key={id}>
-				<h4>{firstname}</h4>
-				<p>{age}</p>
-				<p>{email}</p>
-			</div>
-		)
+		return <MyItem key={person.id} person={person} />
 	})
 
 	const toggleShowButton = () => setIsShowed(prev => !prev)
