@@ -14,7 +14,7 @@ export const reducer = (state, action) => {
 				isError: action.payload.isError,
 			}
 
-		case "LOADING_FECTH_FINISHED":
+		case "FETCH_STATUS":
 			return {
 				...state,
 				isFetchLoading: action.payload.isFetchLoading,
@@ -23,7 +23,7 @@ export const reducer = (state, action) => {
 		case "LOADING_FINISHED":
 			return {
 				...state,
-				isLoading: action.payload.isLoading,
+				isPageLoading: action.payload.isPageLoading,
 			}
 
 		case "ADD_URL":
