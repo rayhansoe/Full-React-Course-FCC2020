@@ -1,4 +1,6 @@
-const MyInput = ({ nameForId, type, value, handleChange, label, children }) => {
+import React from "react"
+
+const MyInput = ({ nameForId, type, value, handleChange, label, children, status }, ref) => {
 	return (
 		<div className='form-control'>
 			<label htmlFor={nameForId}>{label || children}</label>
@@ -9,9 +11,12 @@ const MyInput = ({ nameForId, type, value, handleChange, label, children }) => {
 				required='required'
 				onChange={handleChange}
 				name={nameForId}
+				ref={ref}
+				autoFocus
+				disabled={status && true}
 			/>
 		</div>
 	)
 }
 
-export default MyInput
+export default React.forwardRef(MyInput)
