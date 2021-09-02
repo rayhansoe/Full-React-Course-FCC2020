@@ -100,7 +100,7 @@ const UseReducerTopic = () => {
 	// when the loading is finished
 	return (
 		<>
-			<h3 style={{ marginBottom: "40px" }}>UseEffect | Fetch | UseReducer</h3>
+			<h3 style={{ marginBottom: "40px" }}>UseEffect | UseReducer | UseRef | Fetch</h3>
 			<section>
 				<form className='form' onSubmit={handleSubmit}>
 					<MyInput
