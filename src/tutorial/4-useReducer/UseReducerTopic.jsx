@@ -9,9 +9,11 @@ const url = "https://api.github.com/users"
 
 // default state
 const defaultState = {
-	isLoading: true,
+	isFetchLoading: true,
 	isError: false,
 	users: [],
+	url: "",
+	isPageLoading: true,
 }
 
 // main component
@@ -46,7 +48,7 @@ const UseReducerTopic = () => {
 				dispatch({
 					type: "LOADING_FINISHED",
 					payload: {
-						isLoading: false,
+						isFetchLoading: false,
 					},
 				})
 			}, 500)
@@ -55,7 +57,7 @@ const UseReducerTopic = () => {
 	}, [state.users.length])
 
 	// when the page is loading
-	if (state.isLoading) {
+	if (state.isFetchLoading) {
 		return (
 			<>
 				<h1>Loading....</h1>
