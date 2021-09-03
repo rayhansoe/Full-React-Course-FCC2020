@@ -32,6 +32,19 @@ export const reducer = (state, action) => {
 				url: action.payload.url,
 			}
 
+		case "REMOVE_USER":
+			const newUsers = state.users.filter(user => user.id !== action.payload.id)
+			return {
+				...state,
+				users: newUsers,
+			}
+
+		case "RE-FETCH":
+			return {
+				...state,
+				users: [...action.payload.users],
+			}
+
 		default:
 			throw new Error("no matching action type")
 	}
