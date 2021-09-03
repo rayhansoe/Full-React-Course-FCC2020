@@ -20,31 +20,42 @@ const UseReducerTopic = () => {
 	const [state, dispatch] = useReducer(reducer, defaultState)
 	const inputRef = useRef(null)
 
-	// user list
-	const getUsersList = () =>
-		state.users.map(user => {
-			return <MyItem key={user.id} user={user} />
-		})
-
 	const handleSubmit = e => {
 		e.preventDefault()
+		if (inputRef.current.value) {
+			dispatch({
+				type: "ADD_URL",
+				payload: {
+					url: inputRef.current.value,
+				},
+			})
+			dispatch({
+				type: "FETCH_STATUS",
+				payload: {
+					isFetchLoading: true,
+				},
+			})
+		}
+	}
+
+	const handleClick = id => {
 		dispatch({
-			type: "ADD_URL",
+			type: "REMOVE_USER",
 			payload: {
-				url: inputRef.current.value,
-			},
-		})
-		dispatch({
-			type: "FETCH_STATUS",
-			payload: {
-				isFetchLoading: true,
+				id,
 			},
 		})
 	}
 
+	// user list
+	const getUsersList = () =>
+		state.users.map(user => {
+			return <MyItem key={user.id} user={user} handleClick={handleClick} />
+		})
+
 	// the side effect for data fetching
 	useEffect(() => {
-		const check = async () => {
+		const getUsersData = async () => {
 			const result = await checkStatus(state.url).catch(err => console.log(err))
 			result &&
 				dispatch({
@@ -70,10 +81,38 @@ const UseReducerTopic = () => {
 			}, 500)
 		}
 
-		if (!state.users.length && state.url) {
-			check()
+		const reFetchData = async () => {
+			const result = await checkStatus(state.url).catch(err => console.log(err))
+			result &&
+				dispatch({
+					type: "RE-FETCH",
+					payload: { users: result },
+				})
+
+			!result &&
+				dispatch({
+					type: "ERROR_FETCHING",
+					payload: {
+						isError: true,
+					},
+				})
+
+			setTimeout(() => {
+				dispatch({
+					type: "FETCH_STATUS",
+					payload: {
+						isFetchLoading: false,
+					},
+				})
+			}, 500)
 		}
-	}, [state.isPageLoading, state.url, state.users.length])
+
+		if (!state.users.length && state.url) {
+			getUsersData()
+		} else if (state.users.length < 30 && state.users.length !== 0 && state.isFetchLoading) {
+			reFetchData()
+		}
+	}, [state.isFetchLoading, state.isPageLoading, state.url, state.users.length])
 
 	// when the page still loading
 	if (state.isPageLoading) {
@@ -101,6 +140,7 @@ const UseReducerTopic = () => {
 	return (
 		<>
 			<h3 style={{ marginBottom: "40px" }}>UseEffect | UseReducer | UseRef | Fetch</h3>
+			<p>url : https://api.github.com/users</p>
 			<section>
 				<form className='form' onSubmit={handleSubmit}>
 					<MyInput
@@ -110,8 +150,11 @@ const UseReducerTopic = () => {
 						ref={inputRef}
 						type='url'
 					/>
-					<button type='submit' onClick={handleSubmit}>
-						add url
+					<button
+						type='submit'
+						disabled={state.users.length === 30 && state.users.length !== 0 ? true : false}
+						onClick={handleSubmit}>
+						{state.users.length <= 30 && state.users.length !== 0 ? "re-fetch" : "add url"}
 					</button>
 				</form>
 			</section>
