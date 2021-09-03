@@ -1,4 +1,4 @@
-const MyItem = ({ user }) => {
+const MyItem = ({ user, handleClick }) => {
 	const { id, avatar_url, html_url, login } = user
 	return (
 		<li key={id}>
@@ -10,6 +10,7 @@ const MyItem = ({ user }) => {
 					{login}
 				</a>
 			</div>
+			<button onClick={() => handleClick(id)}>remove</button>
 		</li>
 	)
 }
