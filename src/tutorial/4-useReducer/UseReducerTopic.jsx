@@ -1,10 +1,13 @@
-import React, { useEffect, useReducer, useRef } from "react"
+import React, { useEffect, useReducer, useRef, createContext } from "react"
 
 import { reducer } from "./reducer"
 import { checkStatus } from "../../tools"
 
 import MyItem from "./component/MyItem"
 import MyInput from "./component/MyInput"
+
+// createContext
+export const StateContext = createContext()
 
 // default state
 const defaultState = {
@@ -139,7 +142,7 @@ const UseReducerTopic = () => {
 
 	// when the loading is finished
 	return (
-		<>
+		<StateContext.Provider value={[state, dispatch, handleClick, handleSubmit]}>
 			<h3 style={{ marginBottom: "40px" }}>UseEffect | UseReducer | UseRef | Fetch</h3>
 			<p>url : https://api.github.com/users</p>
 			<section>
@@ -173,7 +176,7 @@ const UseReducerTopic = () => {
 					)
 				)}
 			</section>
-		</>
+		</StateContext.Provider>
 	)
 }
 

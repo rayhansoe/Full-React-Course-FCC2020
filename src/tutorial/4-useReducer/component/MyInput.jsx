@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
+import { StateContext } from "../UseReducerTopic"
 
 const MyInput = ({ nameForId, type, value, handleChange, label, children, status }, ref) => {
+	const [state] = useContext(StateContext)
 	return (
 		<div className='form-control'>
 			<label htmlFor={nameForId}>{label || children}</label>
@@ -13,7 +15,7 @@ const MyInput = ({ nameForId, type, value, handleChange, label, children, status
 				name={nameForId}
 				ref={ref}
 				autoFocus
-				disabled={status && true}
+				disabled={state.url && true}
 			/>
 		</div>
 	)
