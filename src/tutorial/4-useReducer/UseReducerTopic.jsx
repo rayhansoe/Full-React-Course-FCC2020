@@ -48,10 +48,11 @@ const UseReducerTopic = () => {
 	}
 
 	// user list
-	const getUsersList = () =>
-		state.users.map(user => {
+	const List = () => {
+		return state.users.map(user => {
 			return <MyItem key={user.id} user={user} handleClick={handleClick} />
 		})
+	}
 
 	// the side effect for data fetching
 	useEffect(() => {
@@ -165,7 +166,9 @@ const UseReducerTopic = () => {
 					state.url && (
 						<>
 							<h3>GitHub Users</h3>
-							<ul className='users'>{getUsersList()}</ul>
+							<ul className='users'>
+								<List />
+							</ul>
 						</>
 					)
 				)}
