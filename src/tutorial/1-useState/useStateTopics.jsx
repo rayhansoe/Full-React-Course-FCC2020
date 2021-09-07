@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { data } from "../../data"
 
 export const UseStateBasics = () => {
@@ -57,7 +58,12 @@ export const UseStateArray = () => {
 
 	return (
 		<>
-			{/* <h1>UseState Array Example</h1> */}
+			<h1>UseState Array Example</h1>
+
+			<Link to='/'>
+				<p>{"< "}back</p>{" "}
+			</Link>
+
 			{peopleList}
 			<RenderButtons />
 		</>

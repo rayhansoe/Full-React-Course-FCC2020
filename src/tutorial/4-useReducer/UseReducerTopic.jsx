@@ -5,6 +5,7 @@ import { checkStatus } from "../../tools"
 
 import MyItem from "./component/MyItem"
 import MyInput from "./component/MyInput"
+import { Link } from "react-router-dom"
 
 // createContext
 export const StateContext = createContext()
@@ -144,7 +145,12 @@ const UseReducerTopic = () => {
 	return (
 		<StateContext.Provider value={[state, dispatch, handleClick, handleSubmit]}>
 			<h3 style={{ marginBottom: "40px" }}>UseEffect | UseReducer | UseRef | Fetch</h3>
-			<p>url : https://api.github.com/users</p>
+
+			<Link to='/'>
+				<p>{"< "}back</p>{" "}
+			</Link>
+
+			<h5>url : https://api.github.com/users</h5>
 			<section>
 				<form className='form' onSubmit={handleSubmit}>
 					<MyInput

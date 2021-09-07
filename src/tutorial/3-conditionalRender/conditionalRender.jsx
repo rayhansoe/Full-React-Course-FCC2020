@@ -4,6 +4,7 @@ import MyInput from "./component/MyInput"
 
 import { v4 as uuidv4 } from "uuid"
 import MyItem from "./component/MyItem"
+import { Link } from "react-router-dom"
 
 export const Main = () => {
 	const [person, setPerson] = useState(() => ({
@@ -12,7 +13,7 @@ export const Main = () => {
 		age: "",
 	}))
 	const [people, setPeople] = useState(() => [])
-	const [isShowed, setIsShowed] = useState(false)
+	const [isShowed, setIsShowed] = useState(true)
 
 	const peopleList = people.map(person => {
 		return <MyItem key={person.id} person={person} />
@@ -44,6 +45,11 @@ export const Main = () => {
 	return (
 		<section>
 			<h2 style={{ marginBottom: "40px" }}>{"Forms & Condtional Render"}</h2>
+
+			<Link to='/'>
+				<p>{"< "}back</p>{" "}
+			</Link>
+
 			<form onSubmit={handleSubmit} className='form'>
 				<MyInput
 					nameForId='firstname'

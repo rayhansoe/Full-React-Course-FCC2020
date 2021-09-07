@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import { checkStatus } from "../../tools"
 
 const url = "https://api.github.com/users"
@@ -138,6 +139,11 @@ export const UseEffectFecthData = () => {
 	return (
 		<>
 			<h3>GitHub Users</h3>
+
+			<Link to='/'>
+				<p>{"< "}back</p>{" "}
+			</Link>
+
 			<ul className='users'>{getUsersList()}</ul>
 		</>
 	)

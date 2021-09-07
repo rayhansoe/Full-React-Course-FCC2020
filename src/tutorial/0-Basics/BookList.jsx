@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 import { myBooks } from "../../myBooks"
 
@@ -19,7 +20,17 @@ const BookList = () => {
 		</Book>
 	))
 
-	return <section className='booklist'>{newBooks}</section>
+	return (
+		<section className='booklist'>
+			<h2>BookList</h2>
+
+			<Link to='/'>
+				<p>{"< "}back</p>{" "}
+			</Link>
+
+			{newBooks}
+		</section>
+	)
 }
 
 export default BookList
