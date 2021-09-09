@@ -1,0 +1,2 @@
+(this["webpackJsonpfull-react-course-2020"]=this["webpackJsonpfull-react-course-2020"]||[]).push([[18],{42:function(c,e,t){"use strict";t.r(e);t(0);var s=t(16),r=t(1);e.default=function(){return Object(r.jsxs)("div",{children:[Object(r.jsx)("h2",{children:"404 Page Not Found."}),Object(r.jsx)(s.b,{to:"/.",children:Object(r.jsx)("p",{children:"Go Back!!!"})})]})}}}]);
+//# sourceMappingURL=18.63167544.chunk.js.map

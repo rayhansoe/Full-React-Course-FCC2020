@@ -1,2 +1,0 @@
-(this["webpackJsonpfull-react-course-2020"]=this["webpackJsonpfull-react-course-2020"]||[]).push([[12],{50:function(e,r,a){"use strict";a.r(r);var l=a(1);r.default=function(e){var r=e.nameForId,a=e.type,n=e.value,t=e.handleChange,c=e.label,s=e.children;return Object(l.jsxs)("div",{className:"form-control",children:[Object(l.jsx)("label",{htmlFor:r,children:c||s}),Object(l.jsx)("input",{type:a,id:r,value:n,required:"required",onChange:t,name:r})]})}}}]);
-//# sourceMappingURL=12.f8849a52.chunk.js.map
