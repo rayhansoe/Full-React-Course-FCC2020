@@ -2,7 +2,7 @@
 	"name": "full-react-course-2020",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "http://rayhansoe.github.io/full-react-course-fcc2020",
+	"homepage": "https://rayhansoe.github.io/Full-React-Course-FCC2020/",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^11.2.7",
