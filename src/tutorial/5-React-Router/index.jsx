@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react"
 import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 const BookList = lazy(() => import("../0-Basics/BookList"))
+const NotFound = lazy(() => import("../NotFound"))
 const UseStateArray = lazy(() => import("../1-useState/useStateTopics"))
 const Main = lazy(() => import("../3-conditionalRender/conditionalRender"))
 const UseReducerTopic = lazy(() => import("../4-useReducer/UseReducerTopic"))
@@ -18,6 +19,7 @@ const Index = () => {
 					<Route path='/useeffect' component={UseEffectFecthData} />
 					<Route path='/conditionalrender' component={Main} />
 					<Route path='/usereducer' component={UseReducerTopic} />
+					<Route component={NotFound} />
 				</Switch>
 			</Suspense>
 		</Router>
