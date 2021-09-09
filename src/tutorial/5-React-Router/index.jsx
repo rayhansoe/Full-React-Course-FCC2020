@@ -14,11 +14,11 @@ const Index = () => {
 			<Suspense fallback={<h1>Loading...</h1>}>
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route path='/booklist' component={BookList} />
-					<Route path='/usestate' component={UseStateArray} />
-					<Route path='/useeffect' component={UseEffectFecthData} />
-					<Route path='/conditionalrender' component={Main} />
-					<Route path='/usereducer' component={UseReducerTopic} />
+					<Route exact path='/booklist' component={BookList} />
+					<Route exact path='/usestate' component={UseStateArray} />
+					<Route exact path='/useeffect' component={UseEffectFecthData} />
+					<Route exact path='/conditionalrender' component={Main} />
+					<Route exact path='/usereducer' component={UseReducerTopic} />
 					<Route component={NotFound} />
 				</Switch>
 			</Suspense>
