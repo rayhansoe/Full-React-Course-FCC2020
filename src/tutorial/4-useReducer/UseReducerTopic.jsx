@@ -1,11 +1,11 @@
-import React, { useEffect, useReducer, useRef, createContext } from "react"
+import React, { useEffect, useReducer, useRef, createContext, lazy, Suspense } from "react"
+import { Link } from "react-router-dom"
 
 import { reducer } from "./reducer"
 import { checkStatus } from "../../tools"
 
-import MyItem from "./component/MyItem"
-import MyInput from "./component/MyInput"
-import { Link } from "react-router-dom"
+const List = lazy(() => import("./components/List"))
+const MyInput = lazy(() => import("./components/MyInput"))
 
 // createContext
 export const StateContext = createContext()
@@ -51,12 +51,12 @@ const UseReducerTopic = () => {
 		})
 	}
 
-	// user list
-	const List = () => {
-		return state.users.map(user => {
-			return <MyItem key={user.id} user={user} handleClick={handleClick} />
-		})
-	}
+	// // user list
+	// const List = () => {
+	// 	return state.users.map(user => {
+	// 		return <MyItem key={user.id} user={user} handleClick={handleClick} />
+	// 	})
+	// }
 
 	// the side effect for data fetching
 	useEffect(() => {
@@ -153,13 +153,15 @@ const UseReducerTopic = () => {
 			<h5>url : https://api.github.com/users</h5>
 			<section>
 				<form className='form' onSubmit={handleSubmit}>
-					<MyInput
-						nameForId='url'
-						status={state.url ? true : false}
-						label='Url : '
-						ref={inputRef}
-						type='url'
-					/>
+					<Suspense fallback={<h1>Loading...</h1>}>
+						<MyInput
+							nameForId='url'
+							status={state.url ? true : false}
+							label='Url : '
+							ref={inputRef}
+							type='url'
+						/>
+					</Suspense>
 					<button
 						type='submit'
 						disabled={state.users.length === 30 && state.users.length !== 0 ? true : false}
@@ -176,7 +178,9 @@ const UseReducerTopic = () => {
 						<>
 							<h3>GitHub Users</h3>
 							<ul className='users'>
-								<List />
+								<Suspense fallback={<h1>Loading...</h1>}>
+									<List />
+								</Suspense>
 							</ul>
 						</>
 					)

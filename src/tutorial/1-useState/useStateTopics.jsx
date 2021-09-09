@@ -14,7 +14,7 @@ export const UseStateBasics = () => {
 	)
 }
 
-export const UseStateArray = () => {
+const UseStateArray = () => {
 	const [people, setPeople] = useState(() => data)
 
 	const removeItems = () => setPeople(() => [])
@@ -110,3 +110,5 @@ export const BasicCounter = () => {
 		</>
 	)
 }
+
+export default UseStateArray

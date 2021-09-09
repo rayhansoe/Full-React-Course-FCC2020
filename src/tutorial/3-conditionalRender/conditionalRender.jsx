@@ -1,12 +1,11 @@
-import React, { useState } from "react"
-
-import MyInput from "./component/MyInput"
-
-import { v4 as uuidv4 } from "uuid"
-import MyItem from "./component/MyItem"
+import React, { useState, lazy, Suspense } from "react"
 import { Link } from "react-router-dom"
+import { v4 as uuidv4 } from "uuid"
 
-export const Main = () => {
+const MyInput = lazy(() => import("./components/MyInput"))
+const List = lazy(() => import("./components/List"))
+
+const Main = () => {
 	const [person, setPerson] = useState(() => ({
 		firstname: "",
 		email: "",
@@ -14,10 +13,6 @@ export const Main = () => {
 	}))
 	const [people, setPeople] = useState(() => [])
 	const [isShowed, setIsShowed] = useState(true)
-
-	const peopleList = people.map(person => {
-		return <MyItem key={person.id} person={person} />
-	})
 
 	const toggleShowButton = () => setIsShowed(prev => !prev)
 
@@ -51,27 +46,29 @@ export const Main = () => {
 			</Link>
 
 			<form onSubmit={handleSubmit} className='form'>
-				<MyInput
-					nameForId='firstname'
-					label='Name : '
-					value={person.firstname}
-					handleChange={handleChange}
-					type='text'
-				/>
-				<MyInput
-					nameForId='email'
-					label='Email : '
-					value={person.email}
-					handleChange={handleChange}
-					type='email'
-				/>
-				<MyInput
-					nameForId='age'
-					label='Age : '
-					value={person.age}
-					handleChange={handleChange}
-					type='text'
-				/>
+				<Suspense fallback={<h1>Loading...</h1>}>
+					<MyInput
+						nameForId='firstname'
+						label='Name : '
+						value={person.firstname}
+						handleChange={handleChange}
+						type='text'
+					/>
+					<MyInput
+						nameForId='email'
+						label='Email : '
+						value={person.email}
+						handleChange={handleChange}
+						type='email'
+					/>
+					<MyInput
+						nameForId='age'
+						label='Age : '
+						value={person.age}
+						handleChange={handleChange}
+						type='text'
+					/>
+				</Suspense>
 				<button className='btn' type='submit' onClick={handleSubmit}>
 					add person
 				</button>
@@ -79,7 +76,13 @@ export const Main = () => {
 			<button className='btn' onClick={toggleShowButton}>
 				{isShowed ? "Hide" : "Show"}
 			</button>
-			{isShowed && peopleList}
+			{isShowed && (
+				<Suspense fallback={<h1>Loading...</h1>}>
+					<List people={people} />
+				</Suspense>
+			)}
 		</section>
 	)
 }
+
+export default Main

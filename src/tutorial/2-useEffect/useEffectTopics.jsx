@@ -148,3 +148,5 @@ export const UseEffectFecthData = () => {
 		</>
 	)
 }
+
+export default UseEffectFecthData

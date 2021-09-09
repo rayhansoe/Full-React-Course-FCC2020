@@ -1,33 +1,25 @@
+import React, { lazy, Suspense } from "react"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
-import BookList from "../0-Basics/BookList"
-import { UseStateArray } from "../1-useState/useStateTopics"
-import { UseEffectFecthData } from "../2-useEffect/useEffectTopics"
-import { Main } from "../3-conditionalRender/conditionalRender"
-import UseReducerTopic from "../4-useReducer/UseReducerTopic"
+
+const BookList = lazy(() => import("../0-Basics/BookList"))
+const UseStateArray = lazy(() => import("../1-useState/useStateTopics"))
+const Main = lazy(() => import("../3-conditionalRender/conditionalRender"))
+const UseReducerTopic = lazy(() => import("../4-useReducer/UseReducerTopic"))
+const UseEffectFecthData = lazy(() => import("../2-useEffect/useEffectTopics"))
 
 const Index = () => {
 	return (
 		<Router>
-			<Switch>
-				<Route exact path='/'>
-					<Home />
-				</Route>
-				<Route path='/booklist'>
-					<BookList />
-				</Route>
-				<Route path='/usestate'>
-					<UseStateArray />
-				</Route>
-				<Route path='/useeffect'>
-					<UseEffectFecthData />
-				</Route>
-				<Route path='/conditionalrender'>
-					<Main />
-				</Route>
-				<Route path='/usereducer'>
-					<UseReducerTopic />
-				</Route>
-			</Switch>
+			<Suspense fallback={<h1>Loading...</h1>}>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route path='/booklist' component={BookList} />
+					<Route path='/usestate' component={UseStateArray} />
+					<Route path='/useeffect' component={UseEffectFecthData} />
+					<Route path='/conditionalrender' component={Main} />
+					<Route path='/usereducer' component={UseReducerTopic} />
+				</Switch>
+			</Suspense>
 		</Router>
 	)
 }
@@ -39,7 +31,7 @@ const Home = () => {
 		<div>
 			<h2>Home</h2>
 			<nav>
-				<ul>
+				<ul className='item'>
 					<li>
 						<Link to='/'>Home</Link>
 					</li>
@@ -49,6 +41,8 @@ const Home = () => {
 					<li>
 						<Link to='/usestate'>UseState Topic</Link>
 					</li>
+				</ul>
+				<ul className='item'>
 					<li>
 						<Link to='/useeffect'>UseEffect Topic</Link>
 					</li>
