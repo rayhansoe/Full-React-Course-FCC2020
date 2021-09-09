@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react"
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 const BookList = lazy(() => import("../0-Basics/BookList"))
 const UseStateArray = lazy(() => import("../1-useState/useStateTopics"))
@@ -9,7 +9,7 @@ const UseEffectFecthData = lazy(() => import("../2-useEffect/useEffectTopics"))
 
 const Index = () => {
 	return (
-		<Router>
+		<Router basename={process.env.PUBLIC_URL}>
 			<Suspense fallback={<h1>Loading...</h1>}>
 				<Switch>
 					<Route exact path='/' component={Home} />
