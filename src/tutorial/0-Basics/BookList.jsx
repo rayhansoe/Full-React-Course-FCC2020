@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, lazy, Suspense } from "react"
-import { Link } from "react-router-dom"
+import React, { useState, lazy, Suspense } from 'react'
+import { Link } from 'react-router-dom'
 
-import { myBooks } from "../../myBooks"
+import { myBooks } from '../../myBooks'
 
-const Book = lazy(() => import("./component/Book"))
+const Book = lazy(() => import('./component/Book'))
 
 const BookList = () => {
 	const [books, setBooks] = useState(() => myBooks)
 
 	const newBooks = books.map(book => (
-		<Suspense fallback={<h1>Loading...</h1>}>
-			<Book key={book.id} {...book}>
+		<Suspense key={book.id} fallback={<h1>Loading...</h1>}>
+			<Book {...book}>
 				{book.id === 2 && (
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat illo dolores
@@ -27,7 +27,7 @@ const BookList = () => {
 			<h2>BookList</h2>
 
 			<Link to='/'>
-				<p>{"< "}back</p>{" "}
+				<p>{'< '}back</p>{' '}
 			</Link>
 
 			{newBooks}
