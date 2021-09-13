@@ -1,6 +1,6 @@
 import { Col, Row, Typography, Card } from 'antd'
 import React, { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 const BookList = lazy(() => import('../0-Basics/BookList'))
 const NotFound = lazy(() => import('../NotFound'))
@@ -13,15 +13,15 @@ const { Title } = Typography
 
 const Index = () => {
 	return (
-		<Router basename={process.env.PUBLIC_URL}>
+		<Router basename={`${process.env.PUBLIC_URL}/`}>
 			<Suspense fallback={<h1>Loading...</h1>}>
 				<Switch>
-					<Route exact path='/' component={Home} />
-					<Route exact path='/booklist' component={BookList} />
-					<Route exact path='/usestate' component={UseStateArray} />
-					<Route exact path='/useeffect' component={UseEffectFecthData} />
-					<Route exact path='/conditionalrender' component={Main} />
-					<Route exact path='/usereducer' component={UseReducerTopic} />
+					<Route path='/booklist' component={BookList} />
+					<Route path='/usestate' component={UseStateArray} />
+					<Route path='/useeffect' component={UseEffectFecthData} />
+					<Route path='/conditionalrender' component={Main} />
+					<Route path='/usereducer' component={UseReducerTopic} />
+					<Route exact path={'/'} component={Home} />
 					<Route component={NotFound} />
 				</Switch>
 			</Suspense>
