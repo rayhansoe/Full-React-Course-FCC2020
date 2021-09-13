@@ -1,0 +1,2 @@
+(this["webpackJsonpfull-react-course-2020"]=this["webpackJsonpfull-react-course-2020"]||[]).push([[13],{216:function(e,c,s){"use strict";s.r(c);var r=s(1);c.default=function(e){var c=e.person,s=c.id,t=c.firstname,i=c.email,n=c.age;return Object(r.jsxs)("div",{className:"item",children:[Object(r.jsx)("h4",{children:t}),Object(r.jsx)("p",{children:n}),Object(r.jsx)("p",{children:i})]},s)}}}]);
+//# sourceMappingURL=13.81cc15d7.chunk.js.map

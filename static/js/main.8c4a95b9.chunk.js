@@ -1,0 +1,2 @@
+(this["webpackJsonpfull-react-course-2020"]=this["webpackJsonpfull-react-course-2020"]||[]).push([[0],{10:function(e,n,t){},4:function(e,n,t){"use strict";t.r(n);var c=t(0),r=t.n(c),s=t(3),l=t.n(s),i=(t(9),t(10),t(1)),o=Object(c.lazy)((function(){return Promise.all([t.e(3),t.e(7)]).then(t.bind(null,12))}));l.a.render(Object(i.jsx)(r.a.StrictMode,{children:Object(i.jsx)(c.Suspense,{fallback:Object(i.jsx)("h1",{children:"Loading..."}),children:Object(i.jsx)(o,{})})}),document.getElementById("root"))}},[[4,1,4]]]);
+//# sourceMappingURL=main.8c4a95b9.chunk.js.map
