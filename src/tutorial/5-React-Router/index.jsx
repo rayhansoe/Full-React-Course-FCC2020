@@ -1,6 +1,6 @@
 import { Col, Row, Typography, Card } from 'antd'
 import React, { lazy, Suspense } from 'react'
-import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 const BookList = lazy(() => import('../0-Basics/BookList'))
 const NotFound = lazy(() => import('../NotFound'))
