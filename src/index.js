@@ -1,8 +1,9 @@
-import React, { lazy, Suspense } from "react"
-import ReactDOM from "react-dom"
+import React, { lazy, Suspense } from 'react'
+import ReactDOM from 'react-dom'
+import 'antd/dist/antd.css'
 
-import "./index.css"
-const App = lazy(() => import("./App"))
+import './index.css'
+const App = lazy(() => import('./App'))
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -10,5 +11,5 @@ ReactDOM.render(
 			<App />
 		</Suspense>
 	</React.StrictMode>,
-	document.getElementById("root")
+	document.getElementById('root')
 )
